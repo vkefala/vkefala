@@ -1,0 +1,56 @@
+
+def main():
+   # Καθορισμος του αρχικου μεγεθους της λιστας για τις μερες
+    days = 10
+
+    print(days)
+    # Δημιουργια κενων λιστων για τις τιμες θερμοκρασιας, βροχοπτωσης και υγρασιας
+    temperatures = []
+    rain = []
+    hum = []
+
+    # Εισαγωγη των ημερησιων τιμων από τον χρηστη
+    
+    for day in range(1, days + 1):
+        temperature = float(input(f"Εισάγετε τη θερμοκρασία για την ημέρα {day}: "))
+        rain = int(input(f"Εισάγετε τη βροχοπτώση για την ημέρα {day} (σε χιλιοστά): "))
+        hum = float(input(f"Εισάγετε την υγρασία για την ημέρα {day}: "))
+
+        temperatures.append(temperature)
+        rain.append(rain)
+        hum.append(hum)
+
+    # Υπολογισμος απαντησεων στις ερωτησεις
+    hot_days = sum(1 for temp in temperatures if temp > 25)
+    
+   # γραψε αυτο αντι για
+    hot_days = 0
+    for temp in temperatures:
+        if temp > 25:
+            hot_days += 1
+
+    hot_rainy_d = sum(1 for i in range(days) if temperatures[i] > 25 and rain[i] > 0) 
+
+   # γραψε αυτο αντι για
+    hot_rainy_d = 0
+    for i in range(days):
+        if temperatures[i] > 25 and rain[i] > 0:
+            hot_rainy_d += 1
+
+    rainy_d_96_per_hum = [i+1 for i in range(days) if rain[i] > 0 and hum[i] < 96] 
+
+   # γραψε αυτο αντι για
+    rainy_d_96_per_hum = []
+    for i in range(days):
+        if rain[i] > 0 and hum[i] < 96:
+            rainy_d_96_per_hum.append(i + 1)
+
+
+    # Εκτυπωση των απαντησεων
+    print(f"Σύνολο μερών με ζέστη: {hot_days} μέρες")
+    print(f"Σύνολο μερών με ζέστη και βροχή: {hot_rainy_d} μέρες")
+    print(f"Μέρες με βροχή και υγρασία κάτω από 96%: {rainy_d_96_per_hum}")
+
+
+if __name__ == "__main__":
+    main()
